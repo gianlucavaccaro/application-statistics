@@ -14,7 +14,7 @@ import com.example.demo.observer.Statistic;
 
 @Service
 @RestController
-@RequestMapping("api/statistics")
+@RequestMapping("/api/statistics")
 public class StatisticRestController {
 	
 	@Autowired
@@ -58,14 +58,14 @@ public class StatisticRestController {
 	
 	
 	//Restituisce tutte le statistiche di oggi che hanno alert a true in una data Applicazione
-	@GetMapping("/{appName}")
+	@GetMapping("/alert/{appName}")
 	public ResponseEntity<ArrayList<Statistic>> getAppAlertStats(@PathVariable("appName") String appName) {
 		ArrayList<Statistic> statistics = statisticsService.getAppAlert(appName);
 		return ResponseEntity.ok(statistics);
 	}
 	
 	//Restituisce tutte le statistiche di oggi che hanno alert a true in un dato modulo di una applicazione
-	@GetMapping("/{appName}/{module}")
+	@GetMapping("/alert/{appName}/{module}")
 	public ResponseEntity<ArrayList<Statistic>> getModuleAlertStats(@PathVariable("logLevel") String logLevel,@PathVariable("appName") String appName, @PathVariable("module") String module) {
 		ArrayList<Statistic> statistics = statisticsService.getModuleAlert(appName,module);
 		return ResponseEntity.ok(statistics);
